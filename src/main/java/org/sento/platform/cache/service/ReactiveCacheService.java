@@ -1,6 +1,7 @@
 package org.sento.platform.cache.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -9,10 +10,10 @@ import java.time.Duration;
 import java.util.Collection;
 
 @Service
-@RequiredArgsConstructor
 public class ReactiveCacheService {
 
-    private final ReactiveRedisTemplate<String, Object> redisTemplate;
+    @Qualifier("jsonReactiveRedisTemplate")
+    private ReactiveRedisTemplate<String, Object> redisTemplate;
 
     // ===================== VALUE =====================
 
