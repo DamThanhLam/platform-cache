@@ -8,7 +8,7 @@
 
     <groupId>org.sento.platform.cache</groupId>
     <artifactId>platform-cache</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <!-- ================== PROPERTIES ================== -->
@@ -43,7 +43,11 @@
 
     <!-- ================== DEPENDENCIES ================== -->
     <dependencies>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!-- Redis core -->
         <dependency>
             <groupId>org.springframework.data</groupId>
