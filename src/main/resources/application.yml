@@ -3,6 +3,8 @@ spring:
     name: platform-cache
   data:
     redis:
-      host: localhost
+      host: your-endpoint.cache.amazonaws.com
       port: 6379
-      timeout: 5000
+      ssl:
+        enabled: true
+      timeout: 2s
