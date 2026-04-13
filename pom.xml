@@ -8,7 +8,7 @@
 
     <groupId>org.sento.platform.cache</groupId>
     <artifactId>platform-cache</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <packaging>jar</packaging>
 
     <!-- ================== PROPERTIES ================== -->
@@ -49,8 +49,8 @@
         </dependency>
         <!-- Redis core -->
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
         </dependency>
 
         <!-- Reactive (WebFlux API only, không kéo server) -->
