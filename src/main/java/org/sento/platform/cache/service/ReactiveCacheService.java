@@ -12,8 +12,14 @@ import java.util.Collection;
 @Service
 public class ReactiveCacheService {
 
-    @Qualifier("jsonReactiveRedisTemplate")
-    private ReactiveRedisTemplate<String, Object> redisTemplate;
+    private final ReactiveRedisTemplate<String, Object> redisTemplate;
+
+    public ReactiveCacheService(
+        @Qualifier("jsonReactiveRedisTemplate")
+        ReactiveRedisTemplate<String, Object> redisTemplate
+    ) {
+        this.redisTemplate = redisTemplate;
+    }
 
     // ===================== VALUE =====================
 
