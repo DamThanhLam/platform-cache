@@ -1,9 +1,9 @@
 package org.sento.platform.cache.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
@@ -93,7 +93,9 @@ public class ReactiveCacheService {
     }
 
     public Mono<Long> setAddAll(String key, Collection<?> values) {
-        return this.redisTemplate.opsForSet().add(key, values.toArray());
+        return Flux.fromIterable(values)
+            .flatMap(value -> redisTemplate.opsForSet().add(key, value))
+            .reduce(0L, Long::sum);
     }
 
     public Mono<Boolean> setIsMember(String key, Object value) {
