@@ -89,8 +89,11 @@ public class ReactiveCacheService {
      * Add (no duplicate) → best for JWT jti
      */
     public Mono<Long> setAdd(String key, Object value) {
-        return redisTemplate.opsForSet()
-            .add(key, value);
+        return this.redisTemplate.opsForSet().add(key, value);
+    }
+
+    public Mono<Long> setAddAll(String key, Collection<?> values) {
+        return this.redisTemplate.opsForSet().add(key, values.toArray());
     }
 
     public Mono<Boolean> setIsMember(String key, Object value) {
