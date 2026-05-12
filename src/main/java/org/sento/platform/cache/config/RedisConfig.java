@@ -3,6 +3,7 @@ package org.sento.platform.cache.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
@@ -12,21 +13,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 public class RedisConfig {
 
-    @Bean("stringReactiveRedisTemplate")
-    public ReactiveRedisTemplate<String, String> stringReactiveRedisTemplate(
-        ReactiveRedisConnectionFactory factory
-    ) {
-        StringRedisSerializer stringSerializer = new StringRedisSerializer();
-
-        RedisSerializationContext<String, String> context =
-            RedisSerializationContext.<String, String>newSerializationContext(stringSerializer)
-                .value(stringSerializer)
-                .hashValue(stringSerializer)
-                .build();
-
-        return new ReactiveRedisTemplate<>(factory, context);
-    }
-
+    @Primary
     @Bean("jsonReactiveRedisTemplate")
     public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate(
         ReactiveRedisConnectionFactory factory,
